@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Table from './components/Table';
 
 function App() {
+
+  const data = [
+    { name: 'Orange', color: 'bg-orange-500', score: 5 },
+    { name: 'Apple', color: 'bg-red-500', score: 3 },
+    { name: 'Banana', color: 'bg-yellow-500', score: 1 },
+    { name: 'Lime', color: 'bg-green-500', score: 4 },
+  ]
+
+  // config file works by q 1 
+  const config = [
+
+    {
+      label: 'Name',
+      render: (fruit) => fruit.name },
+    { 
+      label: 'Color',
+      render: (fruit) => <div className={`p-2 m-3 ${fruit.color}`} />
+    },
+    {
+      label: 'Score',
+      render: (fruit) => fruit.score,
+    }
+  ];
+
+  const keyFn = (fruit) => { 
+    return fruit.name;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Table data={data} config={config} keyFn={keyFn}/>
   );
 }
 
